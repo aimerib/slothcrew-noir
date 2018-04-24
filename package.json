@@ -1,0 +1,23 @@
+{
+  "name": "slothcrew-noir",
+  "version": "1.0.0",
+  "description": "Slothcrew's Photography Portfolio",
+  "author": "Aimeri Baddouh",
+  "private": true,
+  "main": "server.js",
+  "scripts": {
+    "dev": "nodemon server.js"
+  },
+  "dependencies": {
+    "body-parser": "^1.18.2",
+    "cloudinary": "^1.11.0",
+    "dotenv": "^5.0.0",
+    "express": "^4.16.3"
+  },
+  "devDependencies": {
+    "nodemon": "^1.14.12"
+  },
+  "env": {
+    "NODE_ENV": "production"
+  }
+}
