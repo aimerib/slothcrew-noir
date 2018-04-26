@@ -1,32 +1,49 @@
-const express = require('express')
-const bodyParser = require('body-parser')
-const server = express()
-const dotenv = require('dotenv').config()
-const cloudinaryURI = process.env.CLOUDINARY_URL
-const path = require('path')
-const cloudinary = require ('cloudinary')
+const express = require("express");
+const bodyParser = require("body-parser");
+const app = express();
+const dotenv = require("dotenv").config();
+const cloudinaryURI = process.env.CLOUDINARY_URL;
+const cloudinary = require("cloudinary");
+cloudinary.config({
+  cloudinaryURI
+});
 
-cloudinary.config({ 
-    cloudinaryURI
+
+
+//request();
+
+app.set('view engine', 'ejs');
+
+const request = async () => {
+  console.log('2')
+  const pictures = await cloudinary.v2.api.resources({
+    type: "upload",
+    prefix: "slothcrewnoir/",
+    context: true,
+    max_results: 100
   });
-async function getPictures() {
-    let pictures = await cloudinary.v2.api.resources({type: 'upload', prefix: 'Slothcrew/', context: true},function(error, result){
-    return result
-    })
-    handlePictures(pictures.resources)
-}
-function handlePictures(pictures) {
-    for (let picture of pictures) {
-        if (picture.hasOwnProperty('context')) {
-            for (let properties in picture.context.custom) {
-                console.log(`${properties}: ${picture.context.custom[properties]}`)
-            }
-        }
-    }
-}
 
-getPictures()
+  const picture = await pictures.resources;
+  console.log(picture)
+  return picture
+};
+
+app.get('/', function(req, res) {
+  
+  
+  
+  request().then((data) => {let rendered = res.render('pages/index',{
+    pictures: data})
+  })
+  //res.render('pages/index',);
+});
+
+app.get('/about', function(req, res) {
+  res.render('pages/about');
+});
 
 
-server.use('/', express.static(__dirname));
-server.listen(3000, function() { console.log('listening')});
+app.listen(8900, function() {
+  console.log("listening");
+});
+
