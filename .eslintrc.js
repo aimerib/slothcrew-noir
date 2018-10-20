@@ -1,6 +1,6 @@
 module.exports = {
     "env": {
-        "browser": true,
+        "node": true,
         "commonjs": true,
         "es6": true
     },
@@ -31,6 +31,16 @@ module.exports = {
         "semi": [
             "error",
             "never"
+        ],
+        "no-console": [
+            "error",
+            { "allow": ["warn", "error"] }
+        ],
+        "no-unused-vars": [
+            "error",
+            {
+                "allow": ["dotenv"]
+            }
         ]
     }
 };
