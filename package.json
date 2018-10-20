@@ -7,17 +7,17 @@
   "main": "server.js",
   "scripts": {
     "dev": "nodemon server2.js",
-    "serve": "npm start server.js"
+    "start": "npm start server.js"
   },
   "dependencies": {
     "body-parser": "^1.18.2",
     "cloudinary": "^1.11.0",
-    "dotenv": "^5.0.0",
     "ejs": "^2.5.5",
     "express": "^4.16.3"
     
   },
   "devDependencies": {
+    "dotenv": "^5.0.0",
     "nodemon": "^1.14.12"
   },
   "env": {
